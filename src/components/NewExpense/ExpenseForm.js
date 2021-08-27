@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { getHtmlDate } from "../Expenses/ExpenseDate";
-/* import "./ExpenseForm.css"; */
 import "./NewExpense.css";
+import Button from "../UI/Button";
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -71,10 +71,10 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="button" onClick={props.onToggleFormDisplay}>
+        <Button type="submit">Add Expense</Button>
+        <Button type="button" onClick={props.onToggleFormDisplay}>
           Cancel
-        </button>
-        <button type="submit">Add Expense</button>
+        </Button>
       </div>
     </form>
   );

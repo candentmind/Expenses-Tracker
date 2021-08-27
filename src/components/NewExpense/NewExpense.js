@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
-import "./NewExpense.css";
+import Button from "../UI/Button";
 
 const NewExpense = (props) => {
   const [formIsOpen, toggleFormDisplay] = useState(false);
@@ -17,7 +17,7 @@ const NewExpense = (props) => {
 
   return (
     <div className="new-expense">
-      {!formIsOpen && <button onClick={() => toggleFormDisplay(!formIsOpen)}>Add New Expense</button>}
+      {!formIsOpen && <Button onClick={() => toggleFormDisplay(!formIsOpen)}>Add New Expense</Button>}
       {formIsOpen && (
         <ExpenseForm
           onSaveExpenseData={saveExpenseDataHandler}

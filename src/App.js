@@ -26,8 +26,6 @@ const DUMMY_EXPENSES = [
 const App = () => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
   const addExpense = (newExpense) => {
-    //console.log(expenses, newExpense);
-    document.body.style.overflow = "fixed";
     setExpenses((prevExpenses) => {
       return [newExpense, ...prevExpenses];
     });
