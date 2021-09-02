@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ExpensesPanel from "./components/Expenses/ExpensesPanel";
 import NewExpense from "./components/NewExpense/NewExpense";
 
@@ -24,7 +24,31 @@ const DUMMY_EXPENSES = [
 ];
 
 const App = () => {
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const useSemiPersistentState = (
+    key,
+    initialState = "",
+    reviver = (f) => f
+  ) => {
+    const [value, setValue] = useState(
+      typeof initialState === "object"
+        ? JSON.parse(localStorage.getItem(key), reviver)
+        : localStorage.getItem(key) || initialState
+    );
+
+    useEffect(() => {
+      if (typeof initialState === "object")
+        localStorage.setItem(key, JSON.stringify(value));
+      else localStorage.setItem(key, value);
+    }, [key, value]);
+
+    return [value, setValue];
+  };
+
+  const [expenses, setExpenses] = useSemiPersistentState(
+    "expensesData",
+    DUMMY_EXPENSES,
+    (key, value) => (key === "date" ? new Date(value) : value)
+  );
   const addExpense = (newExpense) => {
     setExpenses((prevExpenses) => {
       return [newExpense, ...prevExpenses];
