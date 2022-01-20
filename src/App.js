@@ -29,14 +29,21 @@ const App = () => {
     initialState = "",
     reviver = (f) => f
   ) => {
-    const [value, setValue] = useState(
-      typeof initialState === "object"
-        ? JSON.parse(localStorage.getItem(key), reviver)
-        : localStorage.getItem(key) || initialState
-    );
+    const init = (initialState) => {
+      let val;
+      if (typeof initialState === "object")
+        val = JSON.parse(localStorage.getItem(key), reviver);
+      else if (typeof initialState === "string")
+        val = localStorage.getItem(key);
+
+      if (val) return val;
+      else return initialState;
+    };
+
+    const [value, setValue] = useState(init(initialState));
 
     useEffect(() => {
-      if (typeof initialState === "object")
+      if (typeof value === "object")
         localStorage.setItem(key, JSON.stringify(value));
       else localStorage.setItem(key, value);
     }, [key, value]);
