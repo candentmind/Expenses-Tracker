@@ -19,7 +19,7 @@ const ExpensesPanel = (props) => {
     <Card className="expenses-panel">
       <ExpensesFilter onYearSelect={filterByYear} selected={selectedYear} />
       <ExpensesChart expenses={filteredList} />
-      <ExpensesList filteredList={filteredList} />
+      <ExpensesList filteredList={filteredList} onEditExpense={props.onEditExpense}/>
     </Card>
   );
 };

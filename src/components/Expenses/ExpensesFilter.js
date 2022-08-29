@@ -2,6 +2,8 @@ import React from "react";
 import "./ExpensesFilter.css";
 
 const ExpensesFilter = (props) => {
+  console.log("ExpensesFilter component is called");
+
   const handleYearSelection = (e) => {
     props.onYearSelect(e.target.value);
     //const selectedIndex = e.target.selectedIndex;

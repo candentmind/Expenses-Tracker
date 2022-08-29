@@ -61,11 +61,15 @@ const App = () => {
       return [newExpense, ...prevExpenses];
     });
   };
+  const getSelectedExpense = (expenseId) => {
+    const expenseItem = expenses.find(item => item.id === expenseId);
+    console.log(expenseItem);
+  }
 
   return (
     <div>
       <NewExpense onAddExpense={addExpense} />
-      <ExpensesPanel items={expenses} />
+      <ExpensesPanel items={expenses} onEditExpense={getSelectedExpense}/>
     </div>
   );
 };

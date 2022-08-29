@@ -2,7 +2,7 @@ import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
 import "./ExpenseItem.css";
 
-function ExpenseItem({ item }) {
+function ExpenseItem({ item, onEditExpense }) {
   return (
     <li>
       <Card className="expense-item">
@@ -13,6 +13,7 @@ function ExpenseItem({ item }) {
             <span>&#8358;</span>
             <span>{item.amount}</span>
           </div>
+          <button onClick={() => onEditExpense(item.id)}>Edit expense</button>
         </div>
       </Card>
     </li>
